@@ -43,42 +43,35 @@ class ClassSementes extends ClassCrud {
     #Realizará a inserção no banco de dados
 
     public function insertSementes($arrVar) {
-        //busca a especie na tabela especie.
-        $verify_exist_especie = $this->getDataEspecie($arrVar["especie"]);
-        //busca a especie na tabela na tabela coleta sementes.
-        $verify_exist_especie_semente = $this->getDataSementes($arrVar["especie"]);
-        //busca o local na tabela coleta de sementes.
-        $verify_exist_local = $this->getDataLocal($arrVar["local"]);
-
-        if ($verify_exist_especie["rows"] > 0) {
-            //verifica se existe na tabela especies 
-            if ($verify_exist_especie_semente["rows"] > 0) {
-                //verifica se existe na tabela coleta sementes
-                if ($verify_exist_local["data"]["local"] === $arrVar["local"]) {
-                    //verifica a data
-                    if ($verify_exist_local["data"]["dt"] === $arrVar["data"]) {
-                        //data igual entao diga que ja existe
-                        echo "<script>alert('Já existe esse local!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
+        //
+        $verify_exist = $this->getDataEspecie($arrVar["especie"]);
+        
+        //
+        $verify = $this->getDataSementes($arrVar["especie"]);
+        
+        if($verify_exist["rows"] >0){
+            if($verify["rows"] > 0 && $verify["data"]["local"]=== $arrVar["local"]){
+                if($verify["data"]["dt"]===$arrVar["data"]){
+                    echo "<script>alert('Quantidade somada');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
+                }else{
+                    //se a data for igual, então faça um update na quantidade.
+                    $sql = "update tb_sementes set dt = :data where especie= :especie and local= :local";
+                    $pdo = $this->conexaoDB();
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute(array(
+                        ':especie' => $arrVar["especie"],
+                        ':data' => $arrVar["data"],
+                        ':local' => $arrVar["local"]
+                    ));
+                    if ($stmt->rowCount() > 0) {
+                        echo "<script>alert('A data foi modificada!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
                     } else {
-                        //insere na tabela repicagem
-                        $this->insertDB(
-                                "tb_sementes", "?,?,?,?,?,?,?,?,?,?", array(
-                            0,
-                            $arrVar['local'],
-                            $arrVar['especie'],
-                            $arrVar['data'],
-                            $arrVar['cep'],
-                            $arrVar['endereco'],
-                            $arrVar['bairro'],
-                            $arrVar['cidade'],
-                            $arrVar['uf'],
-                            $arrVar['descricao']
-                                )
-                        );
-                        echo "<script>alert('Cadastrado com sucesso!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
+                        echo "<script>alert('Erro!Verifique os campos!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
                     }
-                } else {
-                    //insere na tabela repicagem
+                }
+            }else{
+                //se for diferente entao insira uma nova geminação.
                     $this->insertDB(
                             "tb_sementes", "?,?,?,?,?,?,?,?,?,?", array(
                         0,
@@ -93,28 +86,10 @@ class ClassSementes extends ClassCrud {
                         $arrVar['descricao']
                             )
                     );
-                    echo "<script>alert('Cadastrado com sucesso!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
-                }
-            } else {
-                //insere na tabela repicagem.
-                $this->insertDB(
-                        "tb_sementes", "?,?,?,?,?,?,?,?,?,?", array(
-                    0,
-                    $arrVar['local'],
-                    $arrVar['especie'],
-                    $arrVar['data'],
-                    $arrVar['cep'],
-                    $arrVar['endereco'],
-                    $arrVar['bairro'],
-                    $arrVar['cidade'],
-                    $arrVar['uf'],
-                    $arrVar['descricao']
-                        )
-                );
-                echo "<script>alert('Cadastrado com sucesso!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
+                    echo "<script>alert('{$arrVar["especie"]} Cadastrada com sucesso!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
             }
-        } else {
-            echo "<script>alert('Especie não existe, Faça o cadastro!');window.location.href='" . DIRPAGE . "/coleta_sementes?pagina=1'</script>";
+        }else{
+            echo "faça o cadastro da especie!";
         }
     }
 

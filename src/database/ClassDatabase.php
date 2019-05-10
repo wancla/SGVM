@@ -13,7 +13,7 @@ use PDO;
 /**
  * Description of ClassDatabase
  *
- * @author ModoHacker
+ * @author Wanclei <wanclei.santos@fatec.sp.gov.br>
  */
 class ClassDatabase extends ClassConexao{
     //put your code here
@@ -58,6 +58,7 @@ class ClassDatabase extends ClassConexao{
             $usuario = "admin";
             $email = "sgvmroot00@gmail.com";
             $tipo = "admin"; 
+            $status = "ativo"; 
             $arrVar=[
                 "nome"=>$nome,
                 "usuario"=>$usuario,
@@ -65,6 +66,7 @@ class ClassDatabase extends ClassConexao{
                 "email"=>$email,                
                 "tipo"=>$tipo,
                 "data"=>$date,
+                "status"=>$status
             ];       
            $validate->validateFinal($arrVar);
            echo '<div class="" style="color:red; font-weight:bold;">'.$validate->getErro().'</div>';
@@ -74,7 +76,7 @@ class ClassDatabase extends ClassConexao{
         
     }
     /**
-     * @author John Doe <john.doe@example.com>
+     * @author Wanclei <wanclei.santos@fatec.sp.gov.br>
      * cria a tabela usuario
      * 
      */
@@ -91,7 +93,8 @@ class ClassDatabase extends ClassConexao{
                     . "hashSenha varchar(255),"
                     . "email varchar(100),"
                     . "tipo varchar(30),"
-                    . "data datetime"
+                    . "data datetime,"
+                    . "status varchar(15)"
                     . ")AUTO_INCREMENT=1 ENGINE=INNODB";
             $con->exec($stmt);
             
@@ -104,7 +107,7 @@ class ClassDatabase extends ClassConexao{
         }
     }
     /**
-     * @author John Doe <john.doe@example.com>
+     * @author Wanclei <wanclei.santos@fatec.sp.gov.br>
      * 
      * 
      */
@@ -161,14 +164,16 @@ class ClassDatabase extends ClassConexao{
             $stmt="";
             $stmt="CREATE TABLE IF NOT EXISTS tb_especies("
                     . "id int (4) UNSIGNED ZEROFILL AUTO_INCREMENT PRIMARY KEY,"
-                    . "nPopular varchar(30),"
+                    . "nPopular varchar(20),"
                     . "nCientifico varchar(30),"
-                    . "familia varchar (30),"
-                    . "classeSucessional varchar(30),"
-                    . "extincao varchar(30),"
-                    . "dispersao varchar(30),"
-                    . "habito varchar(30),"
-                    . "bioma varchar(30),"
+                    . "familia varchar (15),"
+                    . "classeSucessional varchar(20),"
+                    . "extincao varchar(15),"
+                    . "dispersao varchar(20),"
+                    . "habito varchar(10),"
+                    . "bioma varchar(20),"
+                    . "categoria varchar(15),"
+                    . "indicacao varchar(25),"
                     . "descricao varchar(255)"
                     . ")AUTO_INCREMENT=1 ENGINE=INNODB";
             $con->exec($stmt);
@@ -253,9 +258,10 @@ class ClassDatabase extends ClassConexao{
                     . "nome varchar(30),"
                     . "dt date,"
                     . "manutencao date,"
-                    . "cep char(20),"
+                    . "cep char(30),"
                     . "endereco varchar(30),"
-                    . "cidade varchar(15),"
+                    . "bairro varchar(30),"
+                    . "cidade varchar(30),"
                     . "uf varchar(2),"
                     . "descricao varchar(255)"
                     . ")AUTO_INCREMENT=1 ENGINE=INNODB";
@@ -269,14 +275,14 @@ class ClassDatabase extends ClassConexao{
      * 
      * 
      */
-    public function createTableGeminacao(){
+    public function createTableGerminacao(){
         try{
             $con=$this->conexaoDB();
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmt="use ".$this->nameDB;
             $con->exec($stmt);
             $stmt="";
-            $stmt="CREATE TABLE IF NOT EXISTS tb_geminacao("
+            $stmt="CREATE TABLE IF NOT EXISTS tb_germinacao("
                     . "id int (4) UNSIGNED ZEROFILL AUTO_INCREMENT PRIMARY KEY,"
                     . "especie varchar(30),"
                     . "dt date,"
@@ -284,7 +290,7 @@ class ClassDatabase extends ClassConexao{
                     . "descricao varchar(255)"
                     . ")AUTO_INCREMENT=1 ENGINE=INNODB";
             $con->exec($stmt);
-            echo "tb_geminacao=> criada a tabela com sucesso!<br>";
+            echo "tb_germinacao=> criada a tabela com sucesso!<br>";
         } catch (PDOException $e) {
             echo $stmt . "<br>" .$e->getMessage(); 
         }

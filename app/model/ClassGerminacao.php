@@ -17,7 +17,7 @@ use App\Model\ClassCrud;
 use Src\Traits\TraitGetIp;
 use PDO;
 
-class ClassGeminacao extends ClassCrud {
+class ClassGerminacao extends ClassCrud {
 
     /**
      *
@@ -37,24 +37,24 @@ class ClassGeminacao extends ClassCrud {
 
     #Realizará a inserção no banco de dados
 
-    public function insertGeminacao($arrVar) {
+    public function insertGerminacao($arrVar) {
         //busca a especie na tabela @especies e retorna um array de objetos.
         $verify_exist_especie = $this->getDataEspecie($arrVar["especie"]);
         //busca a especie na tabela @repicagem e retorna um array de objetos.
-        $verify_exist_geminacao = $this->getDataGeminacao($arrVar["especie"]);
+        $verify_exist_germinacao = $this->getDataGerminacao($arrVar["especie"]);
         //busca a data na tabela repicagem e retorna um array de objetos.
-        $verify_exist_data = $this->getDataDateGeminacao($arrVar["data"]);
+        $verify_exist_data = $this->getDataDateGerminacao($arrVar["data"]);
         //pega a qtde que ja existe e soma.
         $qtde = $verify_exist_data["data"]["qtde"] + $arrVar["qtde"];
 
 
         if ($verify_exist_especie["rows"] > 0) {
             //se existe,entaoverifica se existe na tabela geminacao
-            if ($verify_exist_geminacao["rows"] > 0) {
+            if ($verify_exist_germinacao["rows"] > 0) {
                 //se existe,entao verifica se a data ´igual.
                 if ($verify_exist_data["data"]["dt"] === $arrVar["data"]) {
                     //se a data for igual, então faça um update na quantidade.
-                    $sql = "update tb_geminacao set qtde = :qtde where especie= :especie and dt= :data";
+                    $sql = "update tb_germinacao set qtde = :qtde where especie= :especie and dt= :data";
                     $pdo = $this->conexaoDB();
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $stmt = $pdo->prepare($sql);
@@ -64,14 +64,14 @@ class ClassGeminacao extends ClassCrud {
                         ':qtde' => $qtde
                     ));
                     if ($stmt->rowCount() > 0) {
-                        echo "<script>alert('Quantidade somada');window.location.href='" . DIRPAGE . "/geminacao?pagina=1'</script>";
+                        echo "<script>alert('Quantidade somada');window.location.href='" . DIRPAGE . "/germinacao?pagina=1'</script>";
                     } else {
-                        echo "<script>alert('Erro!');window.location.href='" . DIRPAGE . "/geminacao?pagina=1'</script>";
+                        echo "<script>alert('Erro!Verifique os campos!');window.location.href='" . DIRPAGE . "/germinacao?pagina=1'</script>";
                     }
                 } else {
                     //se for diferente entao insira uma nova geminação.
                     $this->insertDB(
-                            "tb_geminacao", "?,?,?,?,?", array(
+                            "tb_germinacao", "?,?,?,?,?", array(
                         0,
                         $arrVar['especie'],
                         $arrVar['data'],
@@ -79,12 +79,12 @@ class ClassGeminacao extends ClassCrud {
                         $arrVar['descricao']
                             )
                     );
-                    echo "<script>alert('{$arrVar["especie"]} Cadastrada com sucesso!');window.location.href='" . DIRPAGE . "/geminacao?pagina=1'</script>";
+                    echo "<script>alert('{$arrVar["especie"]} Cadastrada com sucesso!');window.location.href='" . DIRPAGE . "/germinacao?pagina=1'</script>";
                 }
             } else {
-                //se nao existir, insira uma nova geminação no banco de dados.
+                //se nao existir, insira uma nova germinação no banco de dados.
                 $this->insertDB(
-                        "tb_geminacao", "?,?,?,?,?", array(
+                        "tb_germinacao", "?,?,?,?,?", array(
                     0,
                     $arrVar['especie'],
                     $arrVar['data'],
@@ -92,11 +92,11 @@ class ClassGeminacao extends ClassCrud {
                     $arrVar['descricao']
                         )
                 );
-                echo "<script>alert('{$arrVar["especie"]} Cadastrada com sucesso!');window.location.href='" . DIRPAGE . "/geminacao?pagina=1'</script>";
+                echo "<script>alert('{$arrVar["especie"]} Cadastrada com sucesso!');window.location.href='" . DIRPAGE . "/germinacao?pagina=1'</script>";
             }
         } else {
-            //informe ao usuario que ele precisa fazer o cadastro.
-            echo "<script>alert('{$arrVar["especie"]} não existe, por favor faça o cadastro!');window.location.href='" . DIRPAGE . "/geminacao?pagina=1'</script>";
+            //informe ao usuario que ele precisa fazer o cadastro.            
+           echo "<script>alert('{$arrVar["especie"]} não existe, por favor faça o cadastro!');window.location.href='" . DIRPAGE . "/germinacao?pagina=1'</script>";         
         }
     }
 
@@ -131,9 +131,9 @@ class ClassGeminacao extends ClassCrud {
     /**
      * retorna os dados do usuario
      */
-    public function getDataGeminacao($especie) {
+    public function getDataGerminacao($especie) {
         $select = $this->selectDB(
-                "*", "tb_geminacao", "where especie=?", array(
+                "*", "tb_germinacao", "where especie=?", array(
             $especie
                 )
         );
@@ -165,9 +165,9 @@ class ClassGeminacao extends ClassCrud {
     /**
      * retorna os dados da geminacao pela data.
      */
-    public function getDataDateGeminacao($data) {
+    public function getDataDateGerminacao($data) {
         $select = $this->selectDB(
-                "*", "tb_geminacao", "where dt=?", array(
+                "*", "tb_germinacao", "where dt=?", array(
             $data
                 )
         );
@@ -181,9 +181,9 @@ class ClassGeminacao extends ClassCrud {
     /**
      * deleta a geminação do database
      */
-    public function deleteDataGeminacao($id) {
+    public function deleteDataGerminacao($id) {
         $this->deleteDB(
-                "tb_geminacao", "id=?", array(
+                "tb_germinacao", "id=?", array(
             $id
                 )
         );

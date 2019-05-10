@@ -31,7 +31,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Produção <span class=""></span></a>
                     <ul class="dropdown-menu">  
                       <li><a href="<?= DIRPAGE.'/coleta_sementes?pagina=1' ?>">Coleta de Sementes</a></li> 
-                      <li><a href="<?= DIRPAGE.'/geminacao?pagina=1' ?>">Geminação</a></li>
+                      <li><a href="<?= DIRPAGE.'/germinacao?pagina=1' ?>">Germinação</a></li>
                       <li><a href="<?= DIRPAGE.'/repicagem?pagina=1' ?>">Repicagem</a></li>                                         
                     </ul>
                   </li>

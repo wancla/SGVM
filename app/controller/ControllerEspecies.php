@@ -17,7 +17,7 @@ use Src\Classes\ClassValidate as validate;
 use Src\Classes\ClassExport;
 
 class ControllerEspecies extends ClassRender implements InterfaceView {
-
+        
     /**
      * metodo construtor da classe de controler da home.
      */
@@ -54,9 +54,11 @@ class ControllerEspecies extends ClassRender implements InterfaceView {
                     "dispersao" => $especies::getDispercao(),
                     "habito" => $especies::getHabito(),
                     "bioma" => $especies::getBioma(),
+                    "categoria" => $especies::getCategoria(),
+                    "indicacao" => $especies::getIndicacao(),
                     "descricao" => $especies::getDescricao()
                 ];
-                $validate->validateFields($_POST);
+                //$validate->validateFields($_POST);
                 if ($validate->getErro() == "") {
                     $especies->insertEspecie($arrVar);
                 }

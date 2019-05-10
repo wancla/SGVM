@@ -29,7 +29,7 @@ $data = new ClassInventario();
       <h1></h1>      
     </div>
     <div class="circle">
-      <h1><?=$data->getInventario()["geminacao"]?></h1>
+      <h1><?=$data->getInventario()["germinacao"]?></h1>
     </div>
   </div>
 </div> 
@@ -65,8 +65,8 @@ $data = new ClassInventario();
       <div class="filledbar"></div>
     </div>
     <div class="circle">
-      <?=$data->getMaxQtde("tb_geminacao")["especie"]?>
-        <h1><?=$data->getMaxQtde("tb_geminacao")["qtde"]?></h1>
+      <?=$data->getMaxQtde("tb_germinacao")["especie"]?>
+        <h1><?=$data->getMaxQtde("tb_germinacao")["qtde"]?></h1>
     </div>
   </div>
 </div> 
@@ -78,8 +78,8 @@ $data = new ClassInventario();
       <div class="filledbar"></div>
     </div>
     <div class="circle">
-      <?=$data->getMinQtde("tb_geminacao")["especie"]?>
-        <h1><?=$data->getMinQtde("tb_geminacao")["qtde"]?></h1>    
+      <?=$data->getMinQtde("tb_germinacao")["especie"]?>
+        <h1><?=$data->getMinQtde("tb_germinacao")["qtde"]?></h1>    
     </div>
   </div>
 </div> 

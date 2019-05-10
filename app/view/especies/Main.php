@@ -115,7 +115,7 @@ include DIRREQ . '/src/helpers/paginationEspecies.php';
         <div class="form-group">
             <label class="control-label col-sm-2" for="nPopular">Nome Popular:</label>
             <div class="col-sm-5">
-                <input type="text" name="nPopular" id="nPopular" class="form-control">
+                <input type="text" name="nPopular" id="nPopular" class="form-control" required>
             </div>
         </div>
 
@@ -129,18 +129,20 @@ include DIRREQ . '/src/helpers/paginationEspecies.php';
         <div class="form-group">
             <label class="control-label col-sm-2" for="familia">Familia:</label>
             <div class="col-sm-5">
-                <input type="text" name="familia" id="familia" class="form-control">
+                <input type="text" name="familia" id="familia" class="form-control" required>
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="classeSucessional">Classe Sucessional:</label>
+            <label class="control-label col-sm-2" for="classeSucessional">Grupo Ecológico:</label>
             <div class="col-sm-3">
                 <select id="inputClasseSucessional" class="form-control" name="classeSucessional" required>
-                    <option  selected>Escolha...</option>
+                    <option  selected value="null">Escolha...</option>
                     <option value="P">Pioneira</option>
                     <option value="NP">Não Pioneira</option>                          
-                    <option value="Magn">Magnoliopsida</option>                          
+                    <option value="St">Secundária Inicial</option>                          
+                    <option value="St">Secundária Tardia</option>                          
+                    <option value="Climax">Climax</option>                          
                     <option value="NC">Não Classificado</option>                          
                 </select>
             </div>
@@ -150,7 +152,7 @@ include DIRREQ . '/src/helpers/paginationEspecies.php';
             <label class="control-label col-sm-2" for="extincao">Extinção:</label>
             <div class="col-sm-3">
                 <select id="inputClasseSucessional" class="form-control" name="extincao" required>
-                    <option  selected>Escolha...</option>
+                    <option  selected value="null">Escolha...</option>
                     <option value="CR">Corre Risco</option>
                     <option value="SR">Sem Risco</option>                                                                           
                 </select>
@@ -161,10 +163,44 @@ include DIRREQ . '/src/helpers/paginationEspecies.php';
             <label class="control-label col-sm-2" for="dispersao">Dispersão:</label>
             <div class="col-sm-3">
                 <select id="dispersao" class="form-control" name="dispersao" required>
-                    <option  selected>Escolha...</option>
+                    <option  selected value="null">Escolha...</option>
                     <option value="Aut">Autocórica</option>
                     <option value="Ane">Anemocórica</option>                                                                           
                     <option value="Zoo">Zoocórica</option>                                                                           
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="categoria">Categoria:</label>
+            <div class="col-sm-3">
+                <select id="categoria" class="form-control" name="categoria" required>
+                    <option  selected value="null">Escolha...</option>
+                    <option value="frutífera">Frutífera</option>
+                    <option value="ornamental">Ornamental</option>                                                                           
+                    <option value="arbórea">Arbórea</option>                                                                           
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="bioma">Bioma:</label>
+            <div class="col-sm-3">
+                <select id="bioma" class="form-control" name="bioma" required>
+                    <option  selected value="null">Escolha...</option>
+                    <option value="cerrado">Cerrado</option>
+                    <option value="mata atlantica">Mata atlântica</option>                                                                                                                                                   
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="indicacao">Áreas indicas:</label>
+            <div class="col-sm-3">
+                <select id="categoria" class="form-control" name="indicacao" required>
+                    <option  selected value="null">Escolha...</option>
+                    <option value="encharcamento permanente do solo">Encharcamento permanente</option>
+                    <option value="encharcamento temporário do solo">Encharcamento temporário</option>                                                                           
+                    <option value="drenadas, sem alagamento">Área drenada/Sem alagamento</option>                                                                           
                 </select>
             </div>
         </div>
@@ -173,13 +209,6 @@ include DIRREQ . '/src/helpers/paginationEspecies.php';
             <label class="control-label col-sm-2" for="habito">Habito de Crescimento:</label>
             <div class="col-sm-5">
                 <input type="text" name="habito" id="habito" class="form-control">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="bioma">Bioma:</label>
-            <div class="col-sm-5">
-                <input type="text" name="bioma" id="bioma" class="form-control">
             </div>
         </div>
 

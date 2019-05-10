@@ -30,6 +30,8 @@ class ClassEspecies extends ClassCrud {
     static $dispercao;
     static $habito;
     static $bioma;
+    static $indicacao;
+    static $categoria;
     static $descricao;
     private $trait;
     private $dateNow;
@@ -50,7 +52,7 @@ class ClassEspecies extends ClassCrud {
         } else {
             //se nao encontrou insira uma nova especie.
             $this->insertDB(
-                    "tb_especies", "?,?,?,?,?,?,?,?,?,?", array(
+                    "tb_especies", "?,?,?,?,?,?,?,?,?,?,?,?", array(
                 0,
                 $arrVar['nPopular'],
                 $arrVar['nCientifico'],
@@ -60,6 +62,8 @@ class ClassEspecies extends ClassCrud {
                 $arrVar['dispersao'],
                 $arrVar['habito'],
                 $arrVar['bioma'],
+                $arrVar['categoria'],
+                $arrVar['indicacao'],
                 $arrVar['descricao']
                     )
             );
@@ -120,6 +124,18 @@ class ClassEspecies extends ClassCrud {
         if (isset($_POST['bioma'])) {
             self::$bioma = filter_input(INPUT_POST, 'bioma', FILTER_DEFAULT);
             return ucwords(self::$bioma);
+        }
+    }
+    static function getCategoria() {
+        if (isset($_POST['categoria'])) {
+            self::$categoria = filter_input(INPUT_POST, 'categoria', FILTER_DEFAULT);
+            return ucwords(self::$categoria);
+        }
+    }
+    static function getIndicacao() {
+        if (isset($_POST['indicacao'])) {
+            self::$indicacao = filter_input(INPUT_POST, 'indicacao', FILTER_DEFAULT);
+            return ucwords(self::$indicacao);
         }
     }
 

@@ -48,7 +48,7 @@ class ClassRoutes{
             "especies"=>"ControllerEspecies",           
             "estoque_mudas"=>"ControllerEstoque_mudas",           
             "estoque_sementes"=>"ControllerEstoque_sementes",           
-            "geminacao"=>"ControllerGeminacao",           
+            "germinacao"=>"ControllerGerminacao",           
             "insumos"=>"ControllerInsumos",           
             "inventario"=>"ControllerInventario",           
             "locais_coleta"=>"ControllerLocais_coleta",                                

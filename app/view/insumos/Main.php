@@ -118,7 +118,7 @@ include DIRREQ . '/src/helpers/paginationInsumos.php';
             <div class="col-sm-3">
                 <select id="categoria" name="categoria" class="form-control" required>
                     <option  selected>Escolha...</option>
-                    <option value="Natural">Natural</option>                         
+                    <option value="Quimico">Quimico</option>                         
                     <option value="Organico">Organico</option>                         
                 </select>
             </div>

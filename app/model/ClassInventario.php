@@ -15,7 +15,7 @@ namespace App\Model;
  */
 use App\Model\ClassCrud;
 use Src\Traits\TraitGetIp;
-use App\Model\ClassGeminacao;
+use App\Model\ClassGerminacao;
 use App\Model\ClassEspecies;
 use App\Model\ClassRepicagem;
 use App\Model\ClassDescartes;
@@ -28,7 +28,7 @@ class ClassInventario extends ClassCrud {
      * @var type 
      */
     private $tableEspecies = "tb_especies";
-    private $tableGeminacao = "tb_geminacao";
+    private $tableGerminacao = "tb_germinacao";
     private $tableRepicagem = "tb_Repicagem";
     private $tableDescartes = "tb_Descartes";
     
@@ -51,10 +51,10 @@ class ClassInventario extends ClassCrud {
         return $data;
     }
     /**
-     * pega a quantidade total da coluna qtde da tabela geminacao
+     * pega a quantidade total da coluna qtde da tabela germinacao
      */
-    public function getTotalGeminacaoData(){
-        $data=$this->getSomaColQtde($this->tableGeminacao);
+    public function getTotalGerminacaoData(){
+        $data=$this->getSomaColQtde($this->tableGerminacao);
         return $data;
     }
     /**
@@ -112,7 +112,7 @@ class ClassInventario extends ClassCrud {
         $RowsEspecie=$this->getRowsEspecie();
         
         //pega a qtde de mudas que germinaram.
-        $QtdeGem=$this->getTotalGeminacaoData();
+        $QtdeGem=$this->getTotalGerminacaoData();
         
         //pega a qtde de mudas que repicaram.
         $QtdeRep=$this->getTotalRepicagemData();
@@ -123,7 +123,7 @@ class ClassInventario extends ClassCrud {
           
         $arrData=[
             "especie"=>$RowsEspecie,
-            "geminacao"=>$QtdeGem,
+            "germinacao"=>$QtdeGem,
             "repicagem"=>$QtdeRep,
             "descartes"=>$QtdeDesc                   
         ];

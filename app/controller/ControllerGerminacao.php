@@ -9,21 +9,21 @@ session_start();
 
 use Src\Classes\ClassRender;
 use Src\Classes\ClassValidate as validate;
-use App\Model\ClassGeminacao as geminacao;
+use App\Model\ClassGerminacao as germinacao;
 use Src\Interfaces\InterfaceView;
 use Src\Classes\ClassSessions;
 use Src\Classes\ClassExport;
 
-class ControllerGeminacao extends ClassRender implements InterfaceView{
+class ControllerGerminacao extends ClassRender implements InterfaceView{
     
     /**
      * metodo construtor da classe de controler da home.
      */
     public function __construct() {
-        $this->setTitle("Geminação");
+        $this->setTitle("Germinação");
         $this->setDescription("");
         $this->setKeywords("");
-        $this->setDir("geminacao");
+        $this->setDir("germinacao");
         $this->renderLayout();
         $this->btn_excluir_event();
         $this->btn_export_event();
@@ -34,20 +34,20 @@ class ControllerGeminacao extends ClassRender implements InterfaceView{
   #
     private function Main(){
         $arrVar = null;
-        $geminacao = new geminacao();
+        $germinacao = new germinacao();
         $validate = new validate();
 
         if(!empty($_POST)){                                
             $arrVar =[
-                "especie"=>$geminacao::getEspecie(),
-                "data"=>$geminacao::getData(),
-                "qtde"=>$geminacao::getQtde(),
-                "descricao"=>$geminacao::getDescricao()
+                "especie"=>$germinacao::getEspecie(),
+                "data"=>$germinacao::getData(),
+                "qtde"=>$germinacao::getQtde(),
+                "descricao"=>$germinacao::getDescricao()
             ];
-            $validate->validateFields($_POST);           
+            //$validate->validateFields($_POST);           
             
             if($validate->getErro()== ""){
-                $geminacao->insertGeminacao($arrVar);
+                $germinacao->insertGerminacao($arrVar);
                 echo '<div class="" style="color:red; font-weight:bold;">'.$validate->getErro().'</div>';
             }
         }           
@@ -56,8 +56,8 @@ class ControllerGeminacao extends ClassRender implements InterfaceView{
     private function btn_excluir_event(){
         if(isset($_REQUEST["id"])){
             $id=$_REQUEST["id"];
-            $geminacao = new geminacao();
-            $geminacao->deleteDataGeminacao($id);
+            $germinacao = new germinacao();
+            $germinacao->deleteDataGerminacao($id);
         }
     }
     /**
@@ -66,7 +66,7 @@ class ControllerGeminacao extends ClassRender implements InterfaceView{
     private function btn_export_event(){
         if(isset($_REQUEST["pagina"])&& $_REQUEST["pagina"]==0){
              $export=new ClassExport();
-             $export->gerarExcelGeminacao("Tabela Geminacao");
+             $export->gerarExcelGerminacao("Tabela Germinacao");
         }
     }
 

@@ -14,7 +14,7 @@
                     <input class="input100" type="password" name="senha" placeholder="Senha">
                     <span class="focus-input100"></span>
                 </div>
-
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" required>
                 <div class="container-login100-form-btn">
                     <button id="btn_entrar" class="login100-form-btn" style="display:block">
                         Entrar

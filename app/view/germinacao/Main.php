@@ -1,14 +1,14 @@
 <?php
-#<!--VIEW @Geminação -->
+#<!--VIEW @Germinação -->
 include DIRREQ . '/src/helpers/data.php';
-include DIRREQ . '/src/helpers/paginationGeminacao.php';
+include DIRREQ . '/src/helpers/paginationGerminacao.php';
 ?>      
 <div class="container" id="tableEspecie" style="display:block;">    
-    <h1 style='font-weight:bold;'>Geminação</h1>
+    <h1 style='font-weight:bold;'>Germinação</h1>
     <hr>
     <div class="wrapper">
         <div class="form-group form-inline">
-            <form method="post" action="<?= DIRPAGE . '/geminacao?pagina=1' ?>">
+            <form method="post" action="<?= DIRPAGE . '/germinacao?pagina=1' ?>">
                 <button class="btn btn-sm btn-primary" type="submit" id="btn_consulta" name="btn_consultar"><span class='glyphicon glyphicon-search'></span></button>
                 <input id="consultar" name='consultar' placeholder='Consultar' type='text' class='form-control'>           
             </form>
@@ -91,7 +91,7 @@ include DIRREQ . '/src/helpers/paginationGeminacao.php';
             }
             ?>
         </div>
-        <a href="<?=DIRPAGE.'/geminacao?pagina=0'?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
+        <a href="<?=DIRPAGE.'/germinacao?pagina=0'?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
         <button class='btn btn-success btn-lg' type='button' onclick="showForm()" name="novo"><span class="glyphicon glyphicon-plus"></span></button>    
     </div>
 
@@ -99,8 +99,8 @@ include DIRREQ . '/src/helpers/paginationGeminacao.php';
 
 <!--=========================================================================-->
 <div class="container">                    
-    <form action="<?= DIRPAGE . '/geminacao?pagina=1' ?>" method="post" id="formEspecie" class="form-horizontal" style="display:none;">
-        <h1 style='font-weight:bold;'>Geminação</h1>
+    <form action="<?= DIRPAGE . '/germinacao?pagina=1' ?>" method="post" id="formEspecie" class="form-horizontal" style="display:none;">
+        <h1 style='font-weight:bold;'>Germinação</h1>
         <hr>
         <div class="form-group">
             <label class="control-label col-sm-2" for="especie">Nome Popular da especie:</label>
@@ -110,7 +110,7 @@ include DIRREQ . '/src/helpers/paginationGeminacao.php';
         </div>
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="data">Data da Geminação:</label>
+            <label class="control-label col-sm-2" for="data">Data da Germinação:</label>
             <div class="col-sm-5">
                 <input type="date" name="data" id="data" class="form-control">
             </div>

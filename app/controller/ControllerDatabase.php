@@ -24,11 +24,11 @@ class ControllerDatabase extends ClassDatabase{
             $this->createTableClientes();
             $this->createTableSementes();
             $this->createTableRepicagem();
-            $this->createTableGeminacao();
+            $this->createTableGerminacao();
             $this->createTableViveiro();
             $this->createTableInsumos();
             $this->createTableDescartes();
-            //$this->createTableUserDB();
+            $this->createTableUserDB();
         
                
     }

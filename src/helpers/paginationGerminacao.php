@@ -3,7 +3,7 @@
 /**
  * 
  */
-$busca = "SELECT * FROM tb_geminacao";
+$busca = "SELECT * FROM tb_germinacao";
 $total_reg = "10";
 
 

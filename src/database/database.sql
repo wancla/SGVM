@@ -12,9 +12,9 @@ create table if not exists tb_users(
     nome varchar(55) not null,
     usuario varchar(15) not null,
     hashSenha varchar(255) not null,
-    tipo varchar(10)not null,
-    status varchar(15),
-    data datetime
+    tipo varchar(10)not null,    
+    data datetime,
+    status varchar(15)
 )auto_increment=1 engine=InnoDB;
 
 -- create tabela attempt
@@ -42,6 +42,8 @@ create table if not exists tb_especies(
     dispersao varchar(15)not null,
     habito varchar(10),
     bioma varchar(15),
+    categoria varchar(15),
+    indicacao varchar(15),
     descricao varchar(255)
 )auto_increment=1 engine=InnoDB;
 
@@ -129,3 +131,9 @@ create table if not exists tb_descartes(
 --
 
 commit;
+
+-- [DROP TABLES]--
+DROP TABLE `bd_viveiro`.`tb_attempt`, `bd_viveiro`.`tb_clientes`, `bd_viveiro`.`tb_confirmation`, `bd_viveiro`.`tb_descartes`, `bd_viveiro`.`tb_especies`, `bd_viveiro`.`tb_geminacao`, `bd_viveiro`.`tb_insumos`, `bd_viveiro`.`tb_repicagem`, `bd_viveiro`.`tb_sementes`, `bd_viveiro`.`tb_users`, `bd_viveiro`.`tb_viveiro`;
+
+-- ALTER TABLES --
+ALTER TABLE 
