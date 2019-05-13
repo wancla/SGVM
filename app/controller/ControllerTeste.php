@@ -25,9 +25,8 @@ class ControllerTeste extends ClassDatabase{
     /**
      * metodo construtor da classe de controler do Usuario.
      */
-    public function __construct() {
-        $invent=new ClassInventario();
-        $res=$invent->getMaxQtde("tb_geminacao");
-        print_r($res);
+    public function __construct() {        
+        $fpdf=new \App\Model\ClassFpdfMudas();
+        $fpdf->GeneratePdfPorEspecie("mutamba");            
     }   
 }

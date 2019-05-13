@@ -66,7 +66,7 @@ class ClassCrud extends ClassConexao{
      * pega todos os campos da tabela viveiro
      */
     public function getAllData($table) {
-        $stmt = "SELECT * FROM {$table}";
+        $stmt = "SELECT * FROM {$table} ORDER BY especie ASC";
         $data = $this->conexaoDB()->prepare($stmt);
         $data->execute();
         $result=$data->fetchAll(\PDO::FETCH_ASSOC);
@@ -74,10 +74,62 @@ class ClassCrud extends ClassConexao{
         
         foreach($result as $key => $value){
             foreach ($value as $k => $v){
-                $fetch[$key][$k]= utf8_encode($v);
+                $fetch[$key][$k]= utf8_decode($v);
             }
         }
         return $fetch;
+    }
+    /**
+     * pega todos os campos da tabela repicagem pela especie
+     */
+    public function getAllDataPorEspecie($table,$especie) {
+        $stmt = "SELECT * FROM {$table} WHERE especie = :especie";        
+        $data = $this->conexaoDB()->prepare($stmt);
+        $data->bindParam(':especie', $especie);
+        $data->execute();
+        $result=$data->fetchAll(\PDO::FETCH_ASSOC);
+        $fetch=array();
+        
+        foreach($result as $key => $value){
+            foreach ($value as $k => $v){
+                $fetch[$key][$k]= utf8_decode($v);
+            }
+        }
+        return $fetch;
+    }
+    /**
+     * tras a quantidade max
+     */
+    public function getMaxQtdePorEspecie($table,$especie){   
+        try{           
+            $stmt = "SELECT especie,dt,qtde FROM {$table} WHERE especie = :especie and qtde=(SELECT MIN(qtde) FROM {$table}";        
+            $data = $this->conexaoDB()->prepare($stmt);
+            $data->bindParam(':especie', $especie);
+            $data->execute();
+            $result=$data->fetchAll(\PDO::FETCH_ASSOC);
+            $fetch=array();
+        
+        foreach($result as $key => $value){
+            foreach ($value as $k => $v){
+                $fetch[$key][$k]= utf8_decode($v);
+            }
+        }
+        return $fetch;
+        } catch (\PDOExceptionException $ex) {
+            echo $ex->getMessage();
+        }
+    }
+    /**
+     * pega todos os campos da tabela repicagem pela especie
+     */
+    public function getSUMDataPorEspecie($table,$especie) {
+        $stmt = "SELECT SUM(qtde) FROM {$table} WHERE especie = :especie";        
+        $data = $this->conexaoDB()->prepare($stmt);
+        $data->bindParam(':especie', $especie);
+        $data->execute();
+        $result=$data->fetchColumn();
+        
+        return $result;
     }
     /**
      * pega todos os campos da tabela viveiro

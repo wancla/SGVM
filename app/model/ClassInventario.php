@@ -69,7 +69,7 @@ class ClassInventario extends ClassCrud {
      */
     public function getMaxQtde($table){   
         try{
-           $stmt = "SELECT especie, dt, qtde FROM {$table} WHERE qtde=(SELECT MAX(qtde) FROM {$table})";
+           $stmt = "SELECT especie,dt,qtde FROM {$table} WHERE qtde=(SELECT MAX(qtde) FROM {$table})";
             $con = $this->conexaoDB();
             $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $res = $con->query($stmt)->fetchAll();
@@ -77,12 +77,14 @@ class ClassInventario extends ClassCrud {
                 "especie"=>$res["0"]["0"],
                 "data"=>$res["0"]["1"],
                 "qtde"=>$res["0"]["2"],
+                
             ];
             return $array;
         } catch (\PDOExceptionException $ex) {
             echo $ex->getMessage();
         }
     }
+    
     /**
      * tras a quantidade min
      */

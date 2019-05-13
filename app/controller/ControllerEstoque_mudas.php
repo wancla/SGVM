@@ -10,6 +10,7 @@ session_start();
 use Src\Classes\ClassRender;
 use Src\Interfaces\InterfaceView;
 use Src\Classes\ClassSessions;
+use App\Model\ClassFpdfMudas;
 
 class ControllerEstoque_mudas extends ClassRender implements InterfaceView{
     
@@ -21,11 +22,20 @@ class ControllerEstoque_mudas extends ClassRender implements InterfaceView{
         $this->setDescription("");
         $this->setKeywords("");
         $this->setDir("estoque_mudas");
-        $this->renderLayout();
+        $this->Main();
+        $this->renderLayout();        
         $session= new ClassSessions();
-            $session->verifyInsideSession("padrao");
+        $session->verifyInsideSession("padrao");
     }
-
+    private function Main(){
+        
+        if(isset($_REQUEST["action"])&& $_REQUEST["action"]=="true"){
+            $fpdf=new ClassFpdfMudas();
+            $fpdf->GeneratePdf();
+            
+        }
+        
+    }
     
 
 }
