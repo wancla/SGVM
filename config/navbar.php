@@ -58,12 +58,13 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relátorios <span class=""></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="<?= DIRPAGE.'/estoque_mudas' ?>">Estoque de Mudas</a></li>
-                      <li><a href="<?= DIRPAGE.'/estoque_sementes' ?>">Estoque de Sementes</a></li>
-                      <li role="separator" class="divider"></li>
-                      <li><a href="<?= DIRPAGE.'/producao_anual' ?>">Produção Anual</a></li>
-                      <li><a href="<?= DIRPAGE.'/producao_semanal' ?>">Produção Semanal</a></li>
-                      <li><a href="<?= DIRPAGE.'/producao_mensal' ?>">Produção Mensal</a></li>
+                      <li><a href="<?= DIRPAGE.'/estoque_mudas' ?>">Relatórios</a></li>
+                      
+                      
+                      
+                      
+                      
+                      
                       
                     </ul>
                   </li>

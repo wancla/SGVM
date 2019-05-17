@@ -58,7 +58,13 @@
     <script LANGUAGE="JavaScript">
         geral = 0;
         function adiciona() {
-            geral++
+            // Objeto
+            var t = new object();  
+            
+            t.especie1.especie1.val
+            
+            
+            geral++;
             tabelinha = document.getElementById("tabela")
             var especie1 = document.getElementById("especie");
             var qtde1 = document.getElementById("qtde");

@@ -27,6 +27,6 @@ class ControllerTeste extends ClassDatabase{
      */
     public function __construct() {        
         $fpdf=new \App\Model\ClassFpdfMudas();
-        $fpdf->GeneratePdfPorEspecie("mutamba");            
+        $fpdf->GeneratePdfPorEspecie("araca vermelho");            
     }   
 }
