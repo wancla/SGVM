@@ -24,6 +24,7 @@ class ControllerLogout{
     public function main (){
         if($_SESSION == false){
             echo "<script>alert('Você fez Logoff');window.location.href='".DIRPAGE."';</script>"; 
+            die();
         }
     }
 }

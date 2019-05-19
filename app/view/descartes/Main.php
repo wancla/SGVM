@@ -61,17 +61,48 @@ include DIRREQ . '/src/helpers/paginationDescartes.php';
                         </div>
                     </div>
                     <!-- JANELA MODAL DE INFORMAÇÕES-->
-                    <div class="modal fade" id="info<?= $data["id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: black;">
+                    <div class="modal fade" id="info<?= $data["id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;"><?= $data["nome"] ?></h5>
+                                    <h3 class="modal-title" id="exampleModalLabel"><?= $data["especie"] ?></h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body" style="color: black;">
-                                    Descrição: <?= $data["descricao"] ?> <br>                                                                     
+                                <div class="modal-body">
+                                    <div class="container">                    
+                                        <form action="" method="post" id="formEspecie" class="form-horizontal">                   
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="especie">Espécie:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["especie"] ?>" name="especie" id="especie" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="data">Data:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="date" value="<?= $data["dt"] ?>" name="data" id="data" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="qtde">Quantidade:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["qtde"] ?>" name="qtde" id="qtde" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="motivo">Motivo:</label>
+                                                <div class="col-sm-3">
+                                                    <textarea  name="motivo" id="motivo" class="form-control" rows="5" disabled="true"><?= $data["motivo"] ?></textarea>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                   
@@ -89,13 +120,13 @@ include DIRREQ . '/src/helpers/paginationDescartes.php';
 
             <?php if ($pc < $tp) { ?>
                 <a href="?pagina=<?= $proximo ?>"><button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-forward'></button></a>
-            <?php
+                <?php
             } else {
                 
             }
             ?>
         </div>
-        <a href="<?=DIRPAGE.'/descartes?pagina=0'?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
+        <a href="<?= DIRPAGE . '/descartes?pagina=0' ?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
         <button class='btn btn-success btn-lg' type='button' onclick="showForm()" name="novo"><span class="glyphicon glyphicon-plus"></span></button>    
     </div>
 
@@ -109,21 +140,21 @@ include DIRREQ . '/src/helpers/paginationDescartes.php';
         <div class="form-group">
             <label class="control-label col-sm-2" for="especie">Nome popular da Espécie:</label>
             <div class="col-sm-5">
-                <input type="text" name="especie" id="especie" class="form-control">
+                <input type="text" name="especie" id="especie" class="form-control" required>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-2" for="data">Data:</label>
             <div class="col-sm-5">
-                <input type="date" name="data" id="data" class="form-control">
+                <input type="date" name="data" id="data" class="form-control" required>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-sm-2" for="qtde">Quantidade:</label>
             <div class="col-sm-5">
-                <input type="text" name="qtde" id="qtde" class="form-control">
+                <input type="text" name="qtde" id="qtde" class="form-control" required>
             </div>
         </div>
 

@@ -17,21 +17,25 @@ use Src\Classes\ClassValidate as validate;
 use Src\Classes\ClassExport;
 
 class ControllerEspecies extends ClassRender implements InterfaceView {
-        
+
+    use \Src\Traits\TraitUrlParser;
+
     /**
      * metodo construtor da classe de controler da home.
      */
     public function __construct() {
-        $this->setTitle("Especies");
-        $this->setDescription("");
-        $this->setKeywords("");
-        $this->setDir("especies");
-        $this->Main();
-        $this->btn_excluir_event();
-        $this->btn_export_event();
-        $this->renderLayout();
-        $session = new ClassSessions();
-        $session->verifyInsideSession("padrao");
+        if (count($this->parseUrl()) === 1) {
+            $this->setTitle("Especies");
+            $this->setDescription("");
+            $this->setKeywords("");
+            $this->setDir("especies");
+            $this->Main();
+            $this->btn_excluir_event();
+            $this->btn_export_event();
+            $this->renderLayout();
+            $session = new ClassSessions();
+            $session->verifyInsideSession("padrao");
+        }
     }
 
     /**
@@ -75,13 +79,14 @@ class ControllerEspecies extends ClassRender implements InterfaceView {
             $especie->deleteDataEspecie($id);
         }
     }
+
     /**
      * Função do evento do botão excluir
      */
-    private function btn_export_event(){
-        if(isset($_REQUEST["pagina"])&& $_REQUEST["pagina"]==0){
-             $export=new ClassExport();
-             $export->gerarExcelEspecie("Tabela Especies");
+    private function btn_export_event() {
+        if (isset($_REQUEST["pagina"]) && $_REQUEST["pagina"] == 0) {
+            $export = new ClassExport();
+            $export->gerarExcelEspecie("Tabela Especies");
         }
     }
 

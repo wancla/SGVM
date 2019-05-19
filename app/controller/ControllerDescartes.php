@@ -17,21 +17,24 @@ use App\Model\ClassDescartes;
 use Src\Classes\ClassExport;
 
 class ControllerDescartes extends ClassRender implements InterfaceView {
-
+    use \Src\Traits\TraitUrlParser;
     /**
      * metodo construtor da classe de controler da home.
      */
     public function __construct() {
-        $this->setTitle("Perdas & Descartes");
-        $this->setDescription("");
-        $this->setKeywords("");
-        $this->setDir("descartes");
-        $this->btn_excluir_event();
-        $this->btn_export_event();
-        $this->Main();
-        $this->renderLayout();
-        $session = new ClassSessions();
-        $session->verifyInsideSession("padrao");
+        if(\count($this->parseUrl()) === 1){
+            $this->setTitle("Perdas & Descartes");
+            $this->setDescription("");
+            $this->setKeywords("");
+            $this->setDir("descartes");
+            $this->btn_excluir_event();
+            $this->btn_export_event();
+            $this->Main();
+            $this->renderLayout();
+            $session = new ClassSessions();
+            $session->verifyInsideSession("padrao");
+        }
+        
     }
 
     /**
@@ -49,7 +52,7 @@ class ControllerDescartes extends ClassRender implements InterfaceView {
                 "qtde" => $descartes::getQtde(),
                 "motivo" => $descartes::getMotivo()
             ];
-            $validate->validateFields($_POST);
+            //$validate->validateFields($_POST);
             if ($validate->getErro() == "") {
                 $descartes->insertDescarte($arrVar);
             }

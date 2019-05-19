@@ -15,21 +15,24 @@ use App\Model\ClassSementes;
 use Src\Classes\ClassExport;
 
 class ControllerColeta_sementes extends ClassRender implements InterfaceView{
-    
+    use \Src\Traits\TraitUrlParser;
     /**
      * metodo construtor da classe de controler da home.
      */
     public function __construct() {
-        $this->setTitle("Coleta de Sementes");
-        $this->setDescription("");
-        $this->setKeywords("");
-        $this->setDir("coleta_sementes");
-        $this->btn_excluir_event();
-        $this->btn_export_event();
-        $this->main();
-        $this->renderLayout();
-        $session= new ClassSessions();
-        $session->verifyInsideSession("padrao");
+        if(count($this->parseUrl())===1){
+            $this->setTitle("Coleta de Sementes");
+            $this->setDescription("");
+            $this->setKeywords("");
+            $this->setDir("coleta_sementes");
+            $this->btn_excluir_event();
+            $this->btn_export_event();
+            $this->main();
+            $this->renderLayout();
+            $session= new ClassSessions();
+            $session->verifyInsideSession("padrao");
+        }
+        
     }
     /**
      * 

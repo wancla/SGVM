@@ -54,7 +54,7 @@ class ControllerViveiros extends ClassRender implements InterfaceView{
                 "descricao"=>$viveiro::getDescricao()
             ];
             
-            $validate->validateFields($_POST);
+            //$validate->validateFields($_POST);
                 if($validate->getErro()==""){
                     $viveiro->insertViveiro($arrVar);
                 }

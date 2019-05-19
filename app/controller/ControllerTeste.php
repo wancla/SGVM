@@ -1,32 +1,35 @@
 <?php
+
 namespace App\Controller;
 
-/**
- * @author John Doe <john.doe@example.com>
- * @license http://URL name
- * 
- */
 
+class ControllerTeste {
 
-use Src\Classes\ClassHelperUser as help;
-use App\Model\ClassEspecies;
-use App\Model\ClassCliente as cliente;
-use App\Model\ClassLogin;
-use App\Model\ClassGeminacao;
-use App\Model\ClassViveiros;
-use App\Model\ClassSementes;
-use App\Model\Json;
-use App\Model\ClassExport;
-use Src\database\ClassDatabase;
-use App\Model\ClassInventario;
-
-
-class ControllerTeste extends ClassDatabase{
-    /**
-     * metodo construtor da classe de controler do Usuario.
-     */
-    public function __construct() {        
-        $fpdf=new \App\Model\ClassFpdfMudas();
-        $fpdf->GeneratePdfPorEspecie("araca vermelho");            
-    }   
+public function __construct() {
+try {
+$con = new \PDO("mysql:host=" . HOST . ":" . PORT . ";dbname=" . DB . "", "" . USER . "", "" . PASS . "");
+} catch (\PDOException $erro) {
+return $erro->getMessage();
 }
+
+$number = count($_POST["name"]);
+
+if($number > 1){
+for($i = 0;
+$i<$number;
+$i++){
+if(trim($_POST["name"][$i]) !== ''){
+$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$stmt = $con->prepare("INSERT INTO tb_doacao(especie) VALUES(:especie)");
+$stmt->execute(array(
+':especie' => $_POST["name"][$i]
+));
+}
+echo $stmt->rowCount();
+}
+}else{
+echo "Enter name";
+}
+}
+}
+

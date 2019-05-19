@@ -45,13 +45,84 @@ include DIRREQ . '/src/helpers/paginationClientes.php';
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" style="color: black;"><?= $data["razaosocial"] ?></h5>
+                                    <h3 class="modal-title" id="exampleModalLabel"><?= $data["razaosocial"] ?></h3>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <div class="modal-body" style="color: black;">
-                                    Descrição: <?= $data["descricao"] ?> <br>                                                                     
+                                <div class="modal-body">
+                                    <div class="container">                    
+                                        <form action="" method="post" class="form-horizontal">                                        
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="razaosocial">Nome / Razão Social:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["razaosocial"] ?>" name="razaosocial" id="razaosocial" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="documento">Cnpj/Cpf:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["documento"] ?>" name="documento" id="documento" class="form-control" disabled="true">
+                                                </div>
+                                            </div>                
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="contato">Contato:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="tel" value="<?= $data["contato"] ?>" name="contato" id="contato" class="form-control" disabled="true">
+                                                </div>
+                                            </div>         
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="email">Email:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="email" value="<?= $data["email"] ?>" name="email" id="email" class="form-control" disabled="true">
+                                                </div>
+                                            </div> 
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="cep">Cep:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["cep"] ?>" name="cep" id="cep" class="form-control" onblur="" disabled="true">
+                                                </div>
+                                            </div> 
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="endereço">Endereço:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["endereco"] ?>" name="endereco" id="endereco" class="form-control" disabled="true">
+                                                </div>
+                                            </div> 
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="bairro">Bairro:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["bairro"] ?>" name="bairro" id="bairro" class="form-control" disabled="true">
+                                                </div>
+                                            </div> 
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="cidade">Cidade:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["cidade"] ?>" name="cidade" id="cidade" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="uf">UF:</label>
+                                                <div class="col-sm-3">
+                                                    <input type="text" value="<?= $data["uf"] ?>" name="uf" id="uf" class="form-control" disabled="true">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="descricao">Descrição:</label>
+                                                <div class="col-sm-3">
+                                                    <textarea  name="descricao"  id="descricao" class="form-control" rows="5" disabled="true"><?= $data["descricao"] ?></textarea>
+                                                </div>
+                                            </div>
+                                           
+                                        </form>
+                                    </div>                                                                                                      
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                                   
@@ -74,7 +145,7 @@ include DIRREQ . '/src/helpers/paginationClientes.php';
             }
             ?>
         </div>
-        <a href="<?=DIRPAGE.'/clientes?pagina=0'?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
+        <a href="<?= DIRPAGE . '/clientes?pagina=0' ?>" class="btn btn-info btn-lg" name="excel"><span class="glyphicon glyphicon-save"></span></a>
         <button class='btn btn-success btn-lg' type='button' onclick="showForm()" name="novo"><span class="glyphicon glyphicon-plus"></span></button>    
     </div>
 
@@ -88,32 +159,32 @@ include DIRREQ . '/src/helpers/paginationClientes.php';
         <div class="form-group">
             <label class="control-label col-sm-2" for="razaosocial">Nome / Razão Social:</label>
             <div class="col-sm-5">
-                <input type="text" name="razaosocial" id="razaosocial" class="form-control">
+                <input type="text" name="razaosocial" id="razaosocial" class="form-control" required>
             </div>
         </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="documento">Cnpj/Cpf:</label>
             <div class="col-sm-5">
-                <input type="text" name="documento" id="documento" class="form-control">
+                <input type="text" name="documento" id="documento" class="form-control" required>
             </div>
         </div>                
         <div class="form-group">
             <label class="control-label col-sm-2" for="contato">Contato:</label>
             <div class="col-sm-5">
-                <input type="tel" name="contato" id="contato" class="form-control">
+                <input type="tel" name="contato" id="contato" class="form-control" required>
             </div>
         </div>         
         <div class="form-group">
             <label class="control-label col-sm-2" for="email">Email:</label>
             <div class="col-sm-5">
-                <input type="email" name="email" id="email" class="form-control">
+                <input type="email" name="email" id="email" class="form-control" required>
             </div>
         </div> 
 
         <div class="form-group">
             <label class="control-label col-sm-2" for="cep">Cep:</label>
             <div class="col-sm-5">
-                <input type="text" name="cep" id="cep" class="form-control" onblur="pesquisacep(this.value);">
+                <input type="text" name="cep" id="cep" class="form-control" onblur="pesquisacep(this.value);" required>
             </div>
         </div> 
 

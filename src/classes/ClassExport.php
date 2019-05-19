@@ -244,6 +244,8 @@ class ClassExport extends ClassConexao {
         $tabela .= "<td><b>Dispersão</b></td>";
         $tabela .= "<td><b>Habito</b></td>";
         $tabela .= "<td><b>Bioma</b></td>";
+        $tabela .= "<td><b>Categoria</b></td>";
+        $tabela .= "<td><b>Indicação</b></td>";
         $tabela .= "<td><b>Descrição</b></td>";
         $tabela .= "</tr>";
         
@@ -261,6 +263,8 @@ class ClassExport extends ClassConexao {
             $tabela .= "<td>" . utf8_decode($data['dispersao']) . "</td>";
             $tabela .= "<td>" . utf8_decode($data['habito']) . "</td>";
             $tabela .= "<td>" . utf8_decode($data['bioma']) . "</td>";
+            $tabela .= "<td>" . utf8_decode($data['categoria']) . "</td>";
+            $tabela .= "<td>" . utf8_decode($data['indicacao']) . "</td>";
             $tabela .= "<td>" . utf8_decode($data['descricao']) . "</td>";
             $tabela .= "<tr>";
         }
@@ -282,22 +286,22 @@ class ClassExport extends ClassConexao {
     /**
      * função que gera o arquivo xls para exportação ao excel.
      */
-    public function gerarExcelGeminacao($NomeTabela) {
+    public function gerarExcelGerminacao($NomeTabela) {
 
         //tabela html no formato da planilha do excel.
         $tabela = "<table border='1'>";
         $tabela .= "<tr>";
         $tabela .= "<td colspan='2'>$NomeTabela</tr>";
         $tabela .= "</tr>";
-        $tabela .= "<td><b>ID</b></td>";
+        $tabela .= "<td><b>ID</b></td>";   
         $tabela .= "<td><b>Especie</b></td>";
         $tabela .= "<td><b>Data</b></td>";
-        $tabela .= "<td><b>Quantidade</b></td>";
+        $tabela .= "<td><b>Qtde</b></td>";
         $tabela .= "<td><b>Descrição</b></td>";
         $tabela .= "</tr>";
         
         //chama o comando pra fazer o select no banco
-        $result = $this->data->getAllData("tb_geminacao");
+        $result = $this->data->getAllData("tb_germinacao");
         //varre o aaray
         foreach ($result as $data) {
             $tabela .= "<tr>";

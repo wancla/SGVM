@@ -58,7 +58,8 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relátorios <span class=""></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="<?= DIRPAGE.'/estoque_mudas' ?>">Relatórios</a></li>
+                      <li><a href="<?= DIRPAGE.'/estoque_mudas' ?>">Relatório de Mudas</a></li>
+                      
                       
                       
                       
